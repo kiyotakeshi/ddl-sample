@@ -17,24 +17,24 @@ create table employee
     primary key (id)
 );
 
-create table employee_authorizations
+create table employee_authorization
 (
-    employees_id      integer      not null,
-    authorizations_id varchar(255) not null
+    employee_id      integer      not null,
+    authorization_id varchar(255) not null
 );
 
-alter table employee_authorizations
-    add constraint foreign key (authorizations_id)
+alter table employee_authorization
+    add constraint foreign key (authorization_id)
         references authorization (id);
 
-alter table employee_authorizations
-    add constraint foreign key (employees_id)
+alter table employee_authorization
+    add constraint foreign key (employee_id)
         references employee (id);
 
 select e.first_name, e.last_name, a.name
 from employee e
-         join employee_authorizations ea on e.id = ea.employees_id
-         join authorization a on ea.authorizations_id = a.id;
+         join employee_authorization ea on e.id = ea.employee_id
+         join authorization a on ea.authorization_id = a.id;
 
 /*
 +----------+---------+----------+
